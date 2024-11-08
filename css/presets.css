@@ -1,0 +1,129 @@
+.presets-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.add-preset {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.add-preset input,
+.add-preset select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.presets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.preset-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.preset-item:hover {
+    border-color: #2196F3;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.1);
+}
+
+.preset-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.preset-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.preset-details {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.preset-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.preset-actions button {
+    padding: 6px;
+    border: none;
+    background: none;
+    color: #666;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.preset-actions button:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.preset-actions .remove-preset:hover {
+    color: #dc2626;
+}
+
+.no-presets {
+    text-align: center;
+    padding: 24px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Dark theme */
+[data-theme="dark"] .add-preset {
+    background: #333;
+}
+
+[data-theme="dark"] .add-preset input,
+[data-theme="dark"] .add-preset select {
+    background: #242424;
+    border-color: #404040;
+    color: #fff;
+}
+
+[data-theme="dark"] .preset-item {
+    background: #242424;
+    border-color: #333;
+}
+
+[data-theme="dark"] .preset-name {
+    color: #fff;
+}
+
+[data-theme="dark"] .preset-details {
+    color: #aaa;
+}
+
+[data-theme="dark"] .preset-actions button {
+    color: #aaa;
+}
+
+[data-theme="dark"] .preset-actions button:hover {
+    background: #333;
+    color: #fff;
+}
+
+[data-theme="dark"] .preset-actions .remove-preset:hover {
+    color: #ef4444;
+} 

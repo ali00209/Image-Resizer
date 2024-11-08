@@ -1,0 +1,35 @@
+.control-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.control-button:not(.disabled):hover {
+    background-color: #e0e0e0;
+}
+
+.control-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.control-button i {
+    font-size: 1.1rem;
+}
+
+[data-theme="dark"] .control-button {
+    background-color: #333;
+    color: #fff;
+}
+
+[data-theme="dark"] .control-button:not(.disabled):hover {
+    background-color: #404040;
+} 

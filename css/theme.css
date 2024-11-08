@@ -1,0 +1,58 @@
+/* Dark theme */
+[data-theme="dark"] {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+[data-theme="dark"] .main-content {
+    background: linear-gradient(to bottom, #1a1a1a, #242424);
+}
+
+[data-theme="dark"] .main-content h1 {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .preview,
+[data-theme="dark"] .settings-panel,
+[data-theme="dark"] .custom-ratio-inputs {
+    background-color: #242424;
+    border-color: #333;
+}
+
+[data-theme="dark"] button {
+    background-color: #333;
+    color: #fff;
+}
+
+[data-theme="dark"] button:hover {
+    background-color: #404040;
+}
+
+[data-theme="dark"] button.primary {
+    background-color: #1976D2;
+    color: #fff;
+}
+
+[data-theme="dark"] button.primary:hover {
+    background-color: #1565C0;
+}
+
+[data-theme="dark"] input {
+    background-color: #333;
+    border-color: #404040;
+    color: #fff;
+}
+
+[data-theme="dark"] .grid-line {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .dimension-label,
+[data-theme="dark"] .ratio-label {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .preview:hover .grid-line {
+    background-color: rgba(255, 255, 255, 0.3);
+} 
