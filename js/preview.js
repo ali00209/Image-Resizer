@@ -1,4 +1,5 @@
 import { elements } from './state.js';
+import { debounce } from './utils.js';
 
 function createPreviewOverlay() {
     const overlay = document.createElement('div');
@@ -59,9 +60,24 @@ function initializePreview() {
     preview.appendChild(overlay);
 }
 
+const previewDebounce = debounce((width, height) => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = width;
+    canvas.height = height;
+    
+    if (ctx) {
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'medium'; // Use medium quality for previews
+        // ... drawing logic
+    }
+}, 100);
+
 export {
     createPreviewOverlay,
     updatePreviewOverlay,
     updateGridLines,
-    initializePreview
+    initializePreview,
+    previewDebounce
 }; 

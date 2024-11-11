@@ -1,6 +1,14 @@
 import { announce } from './accessibility.js';
 
 // Utility functions
+/**
+ * Creates a debounced version of a function that delays its execution
+ * until after a specified wait time has elapsed since the last call
+ * 
+ * @param {Function} func - The function to debounce
+ * @param {number} wait - The number of milliseconds to wait
+ * @returns {Function} - The debounced function
+ */
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -79,11 +87,31 @@ function showToast(message, type = 'success') {
     }, 3000);
 }
 
+const ErrorTypes = {
+    IMAGE_PROCESSING: 'image_processing',
+    NETWORK: 'network',
+    VALIDATION: 'validation'
+};
+
+function handleError(error, type) {
+    console.error(`[${type}]`, error);
+    
+    const userMessages = {
+        [ErrorTypes.IMAGE_PROCESSING]: 'Unable to process image. Please try a different image.',
+        [ErrorTypes.NETWORK]: 'Network error. Please check your connection.',
+        [ErrorTypes.VALIDATION]: 'Invalid input. Please check your settings.'
+    };
+    
+    showToast(userMessages[type] || 'An unexpected error occurred', 'error');
+    hideLoading();
+}
+
 export {
     debounce,
     showError,
     showSuccess,
     showLoading,
     hideLoading,
-    showToast
+    showToast,
+    handleError
 }; 

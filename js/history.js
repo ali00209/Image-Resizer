@@ -42,6 +42,18 @@ class History {
         this.isApplyingState = false;
         this.debounceTimeout = null;
         this.lastPushTime = 0;
+        this.currentMemoryUsage = 0;
+        this.maxMemoryUsage = 100 * 1024 * 1024; // 100MB limit
+    }
+
+    estimateImageSize(imageData) {
+        if (typeof imageData === 'string' && imageData.startsWith('data:image')) {
+            return Math.ceil(imageData.length * (3/4));
+        }
+        if (imageData instanceof Blob) {
+            return imageData.size;
+        }
+        return 0;
     }
 
     push(imageData, width, height) {
@@ -55,16 +67,27 @@ class History {
             const currentState = new HistoryState(imageData, width, height);
             const lastState = this.undoStack[this.undoStack.length - 1];
 
+            const estimatedSize = this.estimateImageSize(imageData);
+            while (this.currentMemoryUsage + estimatedSize > this.maxMemoryUsage && this.undoStack.length > 0) {
+                const removedState = this.undoStack.shift();
+                this.currentMemoryUsage -= this.estimateImageSize(removedState.imageData);
+            }
+
             if (currentState.isSignificantlyDifferent(lastState)) {
                 if (this.redoStack.length > 0) {
+                    this.redoStack.forEach(state => {
+                        this.currentMemoryUsage -= this.estimateImageSize(state.imageData);
+                    });
                     this.redoStack = [];
                 }
 
                 this.undoStack.push(currentState);
+                this.currentMemoryUsage += estimatedSize;
                 this.lastPushTime = Date.now();
                 
-                if (this.undoStack.length > this.maxStates) {
-                    this.undoStack.shift();
+                while (this.undoStack.length > this.maxStates) {
+                    const removedState = this.undoStack.shift();
+                    this.currentMemoryUsage -= this.estimateImageSize(removedState.imageData);
                 }
 
                 this.updateButtons();

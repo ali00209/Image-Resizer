@@ -5,6 +5,14 @@ import { updatePreviewOverlay } from './preview.js';
 import { history } from './history.js';
 import { updateHandlesVisibility } from './resizeHandles.js';
 
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+function validateImageType(file) {
+    if (!ALLOWED_TYPES.includes(file.type)) {
+        throw new Error('Unsupported image format. Please use JPEG, PNG, or WebP.');
+    }
+}
+
 function loadImage(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -144,6 +152,16 @@ async function handleImage(file) {
     } finally {
         hideLoading();
     }
+}
+
+function createProgressiveImage(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.loading = 'lazy';
+        img.onload = () => resolve(img);
+        img.src = url;
+    });
 }
 
 export {

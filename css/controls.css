@@ -203,7 +203,11 @@
 
 .control-buttons {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 8px;
+    flex-wrap: wrap;
+    margin: 8px 0;
 }
 
 .common-ratios {
@@ -324,4 +328,86 @@
     .dimension-inputs input {
         width: 60px;
     }
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: none;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background-color: #f5f5f5;
+    color: #333;
+    transform: translateY(-1px);
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+}
+
+/* Apply custom ratio button */
+#applyCustomRatio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2196F3;
+    color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+}
+
+#applyCustomRatio:hover {
+    background-color: #1976D2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+#applyCustomRatio:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(33, 150, 243, 0.2);
+}
+
+#applyCustomRatio:disabled {
+    background-color: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .theme-toggle {
+    color: #aaa;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+[data-theme="dark"] #applyCustomRatio {
+    background-color: #1976D2;
+}
+
+[data-theme="dark"] #applyCustomRatio:hover {
+    background-color: #1565C0;
+}
+
+[data-theme="dark"] #applyCustomRatio:disabled {
+    background-color: #333;
+    color: #666;
 } 

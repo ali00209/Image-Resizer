@@ -56,3 +56,8 @@
 [data-theme="dark"] .preview:hover .grid-line {
     background-color: rgba(255, 255, 255, 0.3);
 } 
+
+[data-theme="dark"] .toast {
+    background-color: #242424;
+    color: #fff;
+}
