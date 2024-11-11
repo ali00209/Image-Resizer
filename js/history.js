@@ -103,6 +103,7 @@ class History {
 
         const currentState = this.undoStack.pop();
         this.redoStack.push(currentState);
+        this.currentMemoryUsage += this.estimateImageSize(currentState.imageData);
 
         const previousState = this.undoStack[this.undoStack.length - 1];
         this.applyState(previousState, 'Undo');
@@ -116,6 +117,7 @@ class History {
 
         const nextState = this.redoStack.pop();
         this.undoStack.push(nextState);
+        this.currentMemoryUsage -= this.estimateImageSize(nextState.imageData);
         this.applyState(nextState, 'Redo');
     }
 
